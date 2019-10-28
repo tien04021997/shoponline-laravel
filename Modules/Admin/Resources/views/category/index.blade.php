@@ -39,18 +39,22 @@
                                     <td>{{ $category->id }}</td>
                                     <td>{{ $category->c_name }}</td>
                                     <td>{{ $category->c_title_seo }}</td>
-                                    <td>{{ $category->c_active }}</td>
+                                    <td>
+                                        <a href="">
+                                            {{ $category->getStatus($category->c_active)['name'] }}
+                                        </a>
+                                    </td>
                                     <td>
                                         <div class="status-admin">
                                             <a class="status-view" href="#" title="Xem chi tiết">
                                                 <i class="fa fa-eye"></i>
                                             </a>
 
-                                            <a class="status-edit" href="#" title="Sửa">
+                                            <a class="status-edit" href="{{ route('admin.get.edit.category', $category->id) }}" title="Sửa">
                                                 <i class="fa fa-edit"></i>
                                             </a>
 
-                                            <a class="status-delete" href="#" title="Xóa">
+                                            <a class="status-delete" href="{{ route('admin.get.action.category', ['delete', $category->id]) }}" title="Xóa">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </div>
