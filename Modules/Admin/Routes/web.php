@@ -14,6 +14,8 @@
 Route::prefix('admin')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin.home');
 
+    /*  Danh mục sản phẩm  */
+
     Route::group(['prefix' => 'category'], function (){
         Route::get('/', 'AdminCategoryController@index')->name('admin.get.list.category');
 
@@ -26,6 +28,8 @@ Route::prefix('admin')->group(function() {
         Route::get('/{action}/{id}', 'AdminCategoryController@action')->name('admin.get.action.category');
     });
 
+    /*  Danh mục tin túc  */
+
     Route::group(['prefix' => 'CategoryNews'], function(){
     	Route::get('/', 'AdminCategoryNewsController@index')->name('admin.get.list.CategoryNews');
 
@@ -37,4 +41,31 @@ Route::prefix('admin')->group(function() {
 
         Route::get('/{action}/{id}', 'AdminCategoryNewsController@action')->name('admin.get.action.CategoryNews');
     });
+
+    /*  Sản phẩm  */
+    Route::group(['prefix' => 'product'], function (){
+       Route::get('/', 'AdminProductController@index')->name('admin.get.list.product');
+
+       Route::get('/create', 'AdminProductController@create')->name('admin.get.create.product');
+       Route::post('/create', 'AdminProductController@store');
+
+       Route::get('/update/{id}', 'AdminProductController@edit')->name('admin.get.edit.product');
+       Route::post('/update/{id}', 'AdminProductController@update');
+
+       Route::get('/{action}/{id}', 'AdminProductController@action')->name('admin.get.action.product');
+    });
+
+    /*  Tin tức  */
+    Route::group(['prefix' => 'news'], function (){
+        Route::get('/', 'AdminNewsController@index')->name('admin.get.list.news');
+
+        Route::get('/create', 'AdminNewsController@create')->name('admin.get.create.news');
+        Route::post('/create', 'AdminNewsController@store');
+
+        Route::get('/update/{id}', 'AdminNewsController@edit')->name('admin.get.edit.news');
+        Route::post('/update/{id}', 'AdminNewsController@update');
+
+        Route::get('/{action}/{id}', 'AdminNewsController@action')->name('admin.get.action.news');
+    });
+
 });

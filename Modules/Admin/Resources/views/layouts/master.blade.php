@@ -109,12 +109,12 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" href="{{ route('admin.get.list.product') }}">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Sản phẩm</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="tables.html">
+            <a class="nav-link" href="{{ route('admin.get.list.news') }}">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Tin tức</span></a>
         </li>
