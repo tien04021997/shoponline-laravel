@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RequestCategory extends FormRequest
+class RequestNews extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +25,11 @@ class RequestCategory extends FormRequest
     {
         return [
             //
-            'name' => 'required|unique:categories,"name",'.$this->id,
-            'icon' => 'required'
-
+            'name' => 'required|unique:news,"name",'.$this->id,
+            'category_id' => 'required',
+            'description' => 'required',
+            'content' => 'required',
+            'avatar' => 'required',
         ];
     }
 
@@ -36,8 +38,11 @@ class RequestCategory extends FormRequest
         // return về một mảng
         return [
             'name.required' => 'Không được để trống',
-            'name.unique' => 'Tên sản phẩm đã tồn tại',
-            'icon.required' => 'Không được để trống'
+            'name.unique' => 'Tên danh mục đã tồn tại',
+            'category_id.required' => 'Không được để trống',
+            'description.required' => 'Không được để trống',
+            'content.required' => 'Không được để trống',
+            'avatar.required' => 'Không được để trống',
         ];
     }
 }

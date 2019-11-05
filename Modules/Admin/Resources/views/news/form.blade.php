@@ -4,7 +4,7 @@
         <div class="col-sm-8">
             <div class="form-group">
                 <label for="name">Tiêu đề:</label>
-                <input type="text" class="form-control" placeholder="Tiêu đề" value="{{ old('name', isset($category->name) ? $category->name : '') }}" name="name">
+                <input type="text" class="form-control" placeholder="Tiêu đề" value="{{ old('name', isset($news->name) ? $news->name : '') }}" name="name">
                 @if($errors->has('name'))
                     <span class="error-text">
                         {{$errors->first('name')}}
@@ -13,39 +13,59 @@
             </div>
 
             <div class="form-group">
-                <label for="icon">Mô tả:</label>
-                <textarea name="" class="form-control" cols="30" rows="3" placeholder="Mô tả ngắn tin tức"></textarea>
+                <label for="description">Mô tả:</label>
+                <textarea name="description" class="form-control" cols="30" rows="3" placeholder="Mô tả ngắn tin tức"></textarea>
+                @if($errors->has('description'))
+                    <span class="error-text">
+                        {{$errors->first('description')}}
+                    </span>
+                @endif
             </div>
 
             <div class="form-group">
-                <label for="icon">Nội dung:</label>
-                <textarea name="" class="form-control" cols="30" rows="3" placeholder="Nội dung"></textarea>
+                <label for="content">Nội dung:</label>
+                <textarea name="content" class="form-control" cols="30" rows="3" placeholder="Nội dung"></textarea>
+                @if($errors->has('content'))
+                    <span class="error-text">
+                        {{$errors->first('content')}}
+                    </span>
+                @endif
             </div>
 
             <div class="form-group">
-                <label for="icon">Meta title:</label>
-                <input type="text" class="form-control" placeholder="Meta title" value="{{ old('title_seo', isset($category->title_seo) ? $category->title_seo : '') }}" name="title_seo">
+                <label for="title_seo">Meta title:</label>
+                <input type="text" class="form-control" placeholder="Meta title" value="{{ old('title_seo', isset($news->title_seo) ? $news->title_seo : '') }}" name="title_seo">
             </div>
 
             <div class="form-group">
-                <label for="icon">Description seo:</label>
-                <input type="text" class="form-control" placeholder="Description seo" value="{{ old('description_seo', isset($category->description_seo) ? $category->description_seo : '') }}" name="description_seo">
+                <label for="description_seo">Description seo:</label>
+                <input type="text" class="form-control" placeholder="Description seo" value="{{ old('description_seo', isset($news->description_seo) ? $news->description_seo : '') }}" name="description_seo">
             </div>
 
         </div>
 
         <div class="col-sm-4">
             <div class="form-group">
-                <label for="icon">Danh mục sản phẩm:</label>
-                <select name="" id="" class="form-control">
+                <label for="category_id">Danh mục tin tức:</label>
+                <select name="category_id" id="" class="form-control">
                     <option value="">----- Danh mục tin tức -----</option>
                     <option value="">Tin tức 1</option>
                 </select>
+                @if($errors->has('category_id'))
+                    <span class="error-text">
+                        {{$errors->first('category_id')}}
+                    </span>
+                @endif
             </div>
 
             <div class="form-group">
-                <label for="icon">Avatar:</label>
-                <input type="file" name="Avatar" class="form-control">
+                <label for="avatar">Avatar:</label>
+                <input type="file" name="avatar" class="form-control">
+                @if($errors->has('avatar'))
+                    <span class="error-text">
+                        {{$errors->first('avatar')}}
+                    </span>
+                @endif
             </div>
 
             <div class="form-group">
