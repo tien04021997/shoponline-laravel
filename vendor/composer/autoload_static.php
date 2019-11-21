@@ -425,6 +425,8 @@ class ComposerStaticInitf547888fe4c9fab56846ef5b0a3e833c
         'App\\Http\\Requests\\RequestProduct' => __DIR__ . '/../..' . '/app/Http/Requests/RequestProduct.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/category.php',
         'App\\Models\\CategoryNews' => __DIR__ . '/../..' . '/app/Models/CategoryNews.php',
+        'App\\Models\\News' => __DIR__ . '/../..' . '/app/Models/News.php',
+        'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',

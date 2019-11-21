@@ -29,6 +29,8 @@ return array(
     'App\\Http\\Requests\\RequestProduct' => $baseDir . '/app/Http/Requests/RequestProduct.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/category.php',
     'App\\Models\\CategoryNews' => $baseDir . '/app/Models/CategoryNews.php',
+    'App\\Models\\News' => $baseDir . '/app/Models/News.php',
+    'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',

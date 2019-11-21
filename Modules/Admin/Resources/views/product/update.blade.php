@@ -7,13 +7,13 @@
             <a href="#">Trang chủ</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{{ route('admin.get.list.CategoryNews') }}">Danh mục</a>
+            <a href="{{ route('admin.get.list.product') }}">Sản phẩm</a>
         </li>
-        <li class="breadcrumb-item active">Cập nhật danh mục</li>
+        <li class="breadcrumb-item active">Cập nhật sản phẩm</li>
     </ol>
 
     <div class="content-top">
-        <h2>Cập nhật danh mục tin tức</h2>
+        <h2>Cập nhật sản phẩm</h2>
         <a class="btn btn-success" href="#">Trở về</a>
     </div>
 

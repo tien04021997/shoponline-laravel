@@ -12,17 +12,17 @@ class Category extends Model
     const STATUS_PUBLIC = 1;
     const STATUS_PRIVATE = 0;
 
-     protected $status = [
-         1 => [
-             'name' => 'Public',
-             'class' => ''
-         ],
+    protected $status = [
+        1 => [
+            'name' => 'Public',
+            'class' => 'badge-primary'
+        ],
 
-         0 => [
-             'name' => 'Private',
-             'class' => ''
-         ]
-     ];
+        0 => [
+            'name' => 'Private',
+            'class' => 'badge-danger'
+        ]
+    ];
 
      public function getStatus(){
          return array_get($this->status, $this->c_active, '[N/A]');

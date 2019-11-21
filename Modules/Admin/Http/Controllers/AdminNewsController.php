@@ -3,78 +3,54 @@
 namespace Modules\Admin\Http\Controllers;
 
 use App\Http\Requests\RequestNews;
+use App\Models\CategoryNews;
+use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
 class AdminNewsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
+
     public function index()
     {
-        return view('admin::news.index');
+        $news = News::paginate(10);
+        $viewData = [
+            'news' => $news,
+        ];
+        return view('admin::news.index', $viewData);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
+
     public function create()
     {
-        return view('admin::news.create');
+        $categorieNews = $this->getCategoryNews();
+        return view('admin::news.create', compact('categorieNews'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Response
-     */
     public function store(RequestNews $requestNews)
     {
-        //
+        $this->insertOrUpdate($requestNews);
+        return redirect()->back();
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
+    public function getCategoryNews()
     {
-        return view('admin::show');
+        return CategoryNews::all();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        return view('admin::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function insertOrUpdate($requestNews, $id=''){
+        $news = new News();
+        if ($id){
+            $news = News::find($id);
+        }
+        $news->name = $requestNews->name;
+        $news->category_id = $requestNews->category_id;
+        $news->description = $requestNews->description;
+        $news->description_seo = $requestNews->description_seo;
+        $news->avatar = $requestNews->avatar;
+        $news->title_seo = $requestNews->title_seo;
+        $news->content = $requestNews->content;
+        $news->save();
     }
 }

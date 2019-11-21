@@ -13,23 +13,13 @@
             </div>
 
             <div class="form-group">
-                <label for="description">Mô tả:</label>
+                <label for="icon">Mô tả:</label>
                 <textarea name="description" class="form-control" cols="30" rows="3" placeholder="Mô tả ngắn tin tức"></textarea>
-                @if($errors->has('description'))
-                    <span class="error-text">
-                        {{$errors->first('description')}}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">
-                <label for="content">Nội dung:</label>
+                <label for="icon">Nội dung:</label>
                 <textarea name="content" class="form-control" cols="30" rows="3" placeholder="Nội dung"></textarea>
-                @if($errors->has('content'))
-                    <span class="error-text">
-                        {{$errors->first('content')}}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">
@@ -39,7 +29,7 @@
 
             <div class="form-group">
                 <label for="description_seo">Description seo:</label>
-                <input type="text" class="form-control" placeholder="Description seo" value="{{ old('description_seo', isset($news->description_seo) ? $news->description_seo : '') }}" name="description_seo">
+                <input type="text" class="form-control" placeholder="Description seo" value="" name="description_seo">
             </div>
 
         </div>
@@ -49,23 +39,17 @@
                 <label for="category_id">Danh mục tin tức:</label>
                 <select name="category_id" id="" class="form-control">
                     <option value="">----- Danh mục tin tức -----</option>
-                    <option value="">Tin tức 1</option>
+                    @if(isset($categorieNews))
+                        @foreach($categorieNews as $categorieNews)
+                            <option value="{{ $categorieNews->id }}">{{ $categorieNews->name }}</option>
+                        @endforeach
+                    @endif
                 </select>
-                @if($errors->has('category_id'))
-                    <span class="error-text">
-                        {{$errors->first('category_id')}}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">
                 <label for="avatar">Avatar:</label>
                 <input type="file" name="avatar" class="form-control">
-                @if($errors->has('avatar'))
-                    <span class="error-text">
-                        {{$errors->first('avatar')}}
-                    </span>
-                @endif
             </div>
 
             <div class="form-group">

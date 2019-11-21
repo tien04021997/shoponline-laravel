@@ -24,25 +24,16 @@ class RequestNews extends FormRequest
     public function rules()
     {
         return [
-            //
+
             'name' => 'required|unique:news,"name",'.$this->id,
-            'category_id' => 'required',
-            'description' => 'required',
-            'content' => 'required',
-            'avatar' => 'required',
         ];
     }
 
     public function messages()
     {
-        // return về một mảng
         return [
             'name.required' => 'Không được để trống',
-            'name.unique' => 'Tên danh mục đã tồn tại',
-            'category_id.required' => 'Không được để trống',
-            'description.required' => 'Không được để trống',
-            'content.required' => 'Không được để trống',
-            'avatar.required' => 'Không được để trống',
+            'name.unique' => 'Tên bài viết đã tồn tại',
         ];
     }
 }

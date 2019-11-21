@@ -24,13 +24,8 @@ class RequestProduct extends FormRequest
     public function rules()
     {
         return [
-            //
+
             'name' => 'required|unique:products,"name",'.$this->id,
-            'category_id' => 'required',
-            'description' => 'required',
-            'content' => 'required',
-            'price' => 'required',
-            'avatar' => 'required'
         ];
     }
 
@@ -40,11 +35,6 @@ class RequestProduct extends FormRequest
         return [
             'name.required' => 'Không được để trống',
             'name.unique' => 'Tên danh mục đã tồn tại',
-            'category_id.required' => 'Không được để trống',
-            'description.required' => 'Không được để trống',
-            'content.required' => 'Không được để trống',
-            'price.required' => 'Không được để trống',
-            'avatar.required' => 'Không được để trống'
         ];
     }
 }

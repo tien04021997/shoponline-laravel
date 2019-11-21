@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CategoryNews extends Model
+class Product extends Model
 {
-    protected $table = 'category_news';
-    protected $guared = [''];
+    protected $table = 'products';
+    protected $guarded = [''];
 
     const STATUS_PUBLIC = 1;
     const STATUS_PRIVATE = 0;

@@ -40,7 +40,7 @@
                                     <td>{{ $category->name }}</td>
                                     <td>{{ $category->title_seo }}</td>
                                     <td>
-                                        <a href="">
+                                        <a href="" class="badge {{ $category->getStatus($category->active)['class'] }}">
                                             {{ $category->getStatus($category->active)['name'] }}
                                         </a>
                                     </td>
