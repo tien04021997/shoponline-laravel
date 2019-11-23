@@ -14,7 +14,7 @@ class AdminNewsController extends Controller
 
     public function index()
     {
-        $news = News::paginate(10);
+        $news = News::with('category:id,name')->paginate(10);
         $viewData = [
             'news' => $news,
         ];
@@ -31,6 +31,17 @@ class AdminNewsController extends Controller
     public function store(RequestNews $requestNews)
     {
         $this->insertOrUpdate($requestNews);
+        return redirect()->back();
+    }
+
+    public function edit($id){
+        $news = News::find($id);
+        $categorieNews = $this->getCategoryNews();
+        return view('admin::news.update', compact('news', 'categorieNews'));
+    }
+
+    public function update(RequestNews $requestNews, $id){
+        $this->insertOrUpdate($requestNews, $id);
         return redirect()->back();
     }
 

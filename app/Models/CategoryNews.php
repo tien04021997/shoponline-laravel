@@ -24,7 +24,9 @@ class CategoryNews extends Model
         ]
     ];
 
+
     public function getStatus(){
         return array_get($this->status, $this->active, '[N/A]');
     }
+
 }

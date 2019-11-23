@@ -29,6 +29,7 @@
                             <th>Tên danh mục</th>
                             <th>Title seo</th>
                             <th>Trạng thái</th>
+                            <th>Nổi bật</th>
                             <th>Thao tác</th>
                         </tr>
                     </thead>

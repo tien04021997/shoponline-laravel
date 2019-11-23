@@ -14,12 +14,16 @@
 
             <div class="form-group">
                 <label for="icon">Mô tả:</label>
-                <textarea name="description" class="form-control" cols="30" rows="3" placeholder="Mô tả ngắn tin tức"></textarea>
+                <textarea name="description" class="form-control" cols="30" rows="3" placeholder="Mô tả ngắn tin tức">
+                    {{ old('description', isset($news->description) ? $news->description : '') }}
+                </textarea>
             </div>
 
             <div class="form-group">
                 <label for="icon">Nội dung:</label>
-                <textarea name="content" class="form-control" cols="30" rows="3" placeholder="Nội dung"></textarea>
+                <textarea name="content" class="form-control" cols="30" rows="3" placeholder="Nội dung">
+                    {{ old('content', isset($news->content) ? $news->content : '') }}
+                </textarea>
             </div>
 
             <div class="form-group">
@@ -29,7 +33,7 @@
 
             <div class="form-group">
                 <label for="description_seo">Description seo:</label>
-                <input type="text" class="form-control" placeholder="Description seo" value="" name="description_seo">
+                <input type="text" class="form-control" placeholder="Description seo" value="{{ old('description_seo', isset($news->description_seo) ? $news->description_seo : '') }}" name="description_seo">
             </div>
 
         </div>
@@ -41,7 +45,7 @@
                     <option value="">----- Danh mục tin tức -----</option>
                     @if(isset($categorieNews))
                         @foreach($categorieNews as $categorieNews)
-                            <option value="{{ $categorieNews->id }}">{{ $categorieNews->name }}</option>
+                            <option value="{{ $categorieNews->id }}" {{ old('category_id', isset($news->category_id) ? $news->category_id : '' == $categorieNews->id ? "selected='selected'" : "") }}>{{ $categorieNews->name }}</option>
                         @endforeach
                     @endif
                 </select>
@@ -49,7 +53,7 @@
 
             <div class="form-group">
                 <label for="avatar">Avatar:</label>
-                <input type="file" name="avatar" class="form-control">
+                <input type="file" name="avatar" value="{{ old('avatar', isset($news->avatar) ? $news->avatar : '') }}" class="form-control">
             </div>
 
             <div class="form-group">

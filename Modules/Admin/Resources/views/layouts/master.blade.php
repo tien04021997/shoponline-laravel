@@ -90,42 +90,42 @@
 
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
-        <li class="nav-item active">
-            <a class="nav-link" href="index.html">
+        <li class="nav-item {{ \Request::route()->getName() == 'admin.home' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('admin.home') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Tổng quan</span>
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ \Request::route()->getName() == 'admin.get.list.category' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('admin.get.list.category') }}">
                 <i class="fas fa-fw fa-folder"></i>
                 <span>Danh mục sản phẩm</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ \Request::route()->getName() == 'admin.get.list.CategoryNews' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('admin.get.list.CategoryNews') }}">
                 <i class="fas fa-fw fa-clone"></i>
                 <span>Danh mục tin tức</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ \Request::route()->getName() == 'admin.get.list.product' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('admin.get.list.product') }}">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Sản phẩm</span></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ \Request::route()->getName() == 'admin.get.list.news' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('admin.get.list.news') }}">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Tin tức</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ \Request::route()->getName() == '' ? 'active' : '' }}">
             <a class="nav-link" href="tables.html">
                 <i class="fa fa-shopping-cart"></i>
                 <span>Đơn hàng</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ \Request::route()->getName() == '' ? 'active' : '' }}">
             <a class="nav-link" href="tables.html">
                 <i class="fa fa-user"></i>
                 <span>Thành viên</span></a>

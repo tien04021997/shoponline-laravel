@@ -18,7 +18,7 @@ class AdminProductController extends Controller
      */
     public function index()
     {
-        $product = Product::paginate(10);
+        $product = Product::with('category:id,c_name')->paginate(10);
         $viewData = [
             'product' => $product,
         ];

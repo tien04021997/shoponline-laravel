@@ -21,7 +21,10 @@
                     <th>ID</th>
                     <th>Tên sản phẩm</th>
                     <th>Loại sản phẩm</th>
+                    <th>Giá sản phẩm</th>
+                    <th>Giảm giá (%)</th>
                     <th>Trạng thái</th>
+                    <th>Nổi bật</th>
                     <th>Thao tác</th>
                 </tr>
             </thead>
@@ -31,10 +34,17 @@
                         <tr>
                             <td>{{ $product->id }}</td>
                             <td>{{ $product->name }}</td>
-                            <td>{{ $product->category_id }}</td>
+                            <td>{{ isset($product->category->c_name) ? $product->category->c_name : '[N/A]' }}</td>
+                            <td>{{ $product->price }}</td>
+                            <td>{{ $product->sale }}</td>
                             <td>
                                 <a href="" class="badge {{$product->getStatus($product->active)['class'] }}">
                                     {{ $product->getStatus($product->active)['name'] }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="" class="badge {{$product->getHot($product->hot)['class'] }}">
+                                    {{ $product->getHot($product->hot)['name'] }}
                                 </a>
                             </td>
                             <td>

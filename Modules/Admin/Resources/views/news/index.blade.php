@@ -10,7 +10,7 @@
     </ol>
 
     <div class="content-top">
-        <h2>Quản lý sản phẩm</h2>
+        <h2>Quản lý tin tức</h2>
         <a class="btn btn-success" href="{{ route('admin.get.create.news') }}">Thêm mới</a>
     </div>
 
@@ -23,6 +23,7 @@
                 <th>Tên bài viết</th>
                 <th>Danh mục</th>
                 <th>Trạng thái</th>
+                <th>Nổi bật</th>
                 <th>Thao tác</th>
             </tr>
             </thead>
@@ -32,10 +33,15 @@
                     <tr>
                         <td>{{ $news->id }}</td>
                         <td>{{ $news->name }}</td>
-                        <td>{{ $news->category_id }}</td>
+                        <td>{{ isset($news->category->name) ? $news->category->name : '[N/A]' }}</td>
                         <td>
                             <a href="" class="badge {{$news->getStatus($news->active)['class'] }}">
                                 {{ $news->getStatus($news->active)['name'] }}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="" class="badge {{$news->getStatus($news->hot)['class'] }}">
+                                {{ $news->getHot($news->hot)['name'] }}
                             </a>
                         </td>
                         <td>

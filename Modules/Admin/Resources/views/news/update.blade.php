@@ -7,7 +7,7 @@
             <a href="#">Trang chủ</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{{ route('admin.get.list.CategoryNews') }}">Danh mục</a>
+            <a href="{{ route('admin.get.list.news') }}">Danh mục</a>
         </li>
         <li class="breadcrumb-item active">Cập nhật danh mục</li>
     </ol>
