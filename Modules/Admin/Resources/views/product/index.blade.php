@@ -14,6 +14,25 @@
         <a class="btn btn-success" href="{{ route('admin.get.create.product') }}">Thêm mới</a>
     </div>
 
+    <div class="form-search clearfix">
+        <form class="form-inline" action="">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Tên sản phẩm" name="name" value="{{ \Request::get('name') }}">
+            </div>
+            <div class="form-group">
+                <select name="cate" id="" class="form-control">
+                    <option value="">Danh mục</option>
+                    @if(isset($categories))
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}" {{ \Request::get('cate') ==  $category->id ? "selected='selected'" : ""}}>{{ $category->c_name }}</option>
+                        @endforeach
+                    @endif
+                </select>
+            </div>
+            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+
     <div class="table-custom">
         <table class="table table-bordered">
             <thead>
@@ -38,12 +57,12 @@
                             <td>{{ $product->price }}</td>
                             <td>{{ $product->sale }}</td>
                             <td>
-                                <a href="" class="badge {{$product->getStatus($product->active)['class'] }}">
+                                <a href="{{ route('admin.get.action.product',['active', $product->id]) }}" class="badge {{$product->getStatus($product->active)['class'] }}">
                                     {{ $product->getStatus($product->active)['name'] }}
                                 </a>
                             </td>
                             <td>
-                                <a href="" class="badge {{$product->getHot($product->hot)['class'] }}">
+                                <a href="{{ route('admin.get.action.product',['hot', $product->id]) }}" class="badge {{$product->getHot($product->hot)['class'] }}">
                                     {{ $product->getHot($product->hot)['name'] }}
                                 </a>
                             </td>

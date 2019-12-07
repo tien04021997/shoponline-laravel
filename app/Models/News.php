@@ -15,7 +15,7 @@ class News extends Model
     const HOT_ON = 1;
     const HOT_OFF = 0;
 
-    protected $status = [
+    protected $status_news = [
         1 => [
             'name' => 'Public',
             'class' => 'badge-primary'
@@ -27,7 +27,7 @@ class News extends Model
         ]
     ];
 
-    protected $view_hot = [
+    protected $view_hot_news = [
         1 => [
             'name' => 'Nổi bật',
             'class' => 'badge-success'
@@ -40,11 +40,11 @@ class News extends Model
     ];
 
     public function getStatus(){
-        return array_get($this->status, $this->active, '[N/A]');
+        return array_get($this->status_news, $this->active, '[N/A]');
     }
 
     public function getHot(){
-        return array_get($this->view_hot, $this->hot, '[N/A]');
+        return array_get($this->view_hot_news, $this->hot, '[N/A]');
     }
 
     public function category()

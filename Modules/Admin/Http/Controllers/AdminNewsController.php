@@ -12,11 +12,20 @@ use Illuminate\Routing\Controller;
 class AdminNewsController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $news = News::with('category:id,name')->paginate(10);
+        $news = News::with('category:id,name');
+
+        /*Cho bài viết nào thêm mới sau thì lên đầu*/
+        if ($request->name) $news->where('name','like','%'.$request->name.'%');
+        if ($request->cate) $news->where('category_id',$request->cate);
+        $news = $news->orderByDesc('id')->paginate(10);
+
+        $categorieNews = $this->getCategoryNews();
+
         $viewData = [
-            'news' => $news,
+            'news'          => $news,
+            'categorieNews' => $categorieNews
         ];
         return view('admin::news.index', $viewData);
     }
@@ -63,5 +72,27 @@ class AdminNewsController extends Controller
         $news->title_seo = $requestNews->title_seo;
         $news->content = $requestNews->content;
         $news->save();
+    }
+
+    public function action($action, $id){
+        if ($action){
+            $news = News::find($id);
+            switch ($action){
+                case 'delete':
+                    $news->delete();
+                    break;
+
+                case 'active':
+                    $news->active = $news->active ? 0 : 1;
+                    $news->save();
+                    break;
+
+                case 'hot':
+                    $news->hot = $news->hot ? 0 : 1;
+                    $news->save();
+                    break;
+            }
+        }
+        return redirect()->back();
     }
 }

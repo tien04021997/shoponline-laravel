@@ -16,11 +16,22 @@ class AdminProductController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $product = Product::with('category:id,c_name')->paginate(10);
+        $product = Product::with('category:id,c_name');
+
+        /*Cho sản phẩm mới lên đầu*/
+        if ($request->name) $product->where('name','like','%'.$request->name.'%');
+
+        if ($request->cate) $product->where('category_id',$request->cate);
+
+        $product = $product->orderByDesc('id')->paginate(10);
+
+        $categories = $this->getCategories();
+
         $viewData = [
-            'product' => $product,
+            'product'    => $product,
+            'categories' => $categories
         ];
         return view('admin::product.index', $viewData);
     }
@@ -69,5 +80,27 @@ class AdminProductController extends Controller
         $product->title_seo = $requestProduct->title_seo;
         $product->content = $requestProduct->content;
         $product->save();
+    }
+
+    public function action($action, $id){
+        if ($action){
+            $product = Product::find($id);
+            switch ($action){
+                case 'delete':
+                    $product->delete();
+                    break;
+
+                case 'active':
+                    $product->active = $product->active ? 0 : 1;
+                    $product->save();
+                    break;
+
+                case 'hot':
+                    $product->hot = $product->hot ? 0 : 1;
+                    $product->save();
+                    break;
+            }
+        }
+        return redirect()->back();
     }
 }

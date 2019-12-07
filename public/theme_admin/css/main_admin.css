@@ -36,3 +36,12 @@
 .status-view{
     background: #34a544 !important;
 }
+.form-search{
+    margin-bottom: 30px;
+}
+.form-search form button{
+    border: 1px solid #ced4da;
+}
+.form-search form .form-group{
+    margin-right: 5px;
+}

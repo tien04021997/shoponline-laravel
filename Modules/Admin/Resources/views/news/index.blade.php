@@ -14,6 +14,25 @@
         <a class="btn btn-success" href="{{ route('admin.get.create.news') }}">Thêm mới</a>
     </div>
 
+    <div class="form-search clearfix">
+        <form class="form-inline" action="">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Tên bài viết" name="name" value="{{ \Request::get('name') }}">
+            </div>
+
+            <div class="form-group">
+                <select name="cate" id="" class="form-control">
+                    <option value="">Danh mục</option>
+                    @if(isset($categorieNews))
+                        @foreach($categorieNews as $category)
+                            <option value="{{ $category->id }}" {{ \Request::get('cate') ==  $category->id ? "selected='selected'" : ""}}>{{ $category->name }}</option>
+                        @endforeach
+                    @endif
+                </select>
+            </div>
+            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
 
     <div class="table-custom">
         <table class="table table-bordered">
@@ -35,12 +54,12 @@
                         <td>{{ $news->name }}</td>
                         <td>{{ isset($news->category->name) ? $news->category->name : '[N/A]' }}</td>
                         <td>
-                            <a href="" class="badge {{$news->getStatus($news->active)['class'] }}">
+                            <a href="{{ route('admin.get.action.news',['active', $news->id]) }}" class="badge {{$news->getStatus($news->active)['class'] }}">
                                 {{ $news->getStatus($news->active)['name'] }}
                             </a>
                         </td>
                         <td>
-                            <a href="" class="badge {{$news->getStatus($news->hot)['class'] }}">
+                            <a href="{{ route('admin.get.action.news',['hot', $news->id]) }}" class="badge {{$news->getHot($news->hot)['class'] }}">
                                 {{ $news->getHot($news->hot)['name'] }}
                             </a>
                         </td>
