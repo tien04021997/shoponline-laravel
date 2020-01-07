@@ -79,6 +79,17 @@ class AdminProductController extends Controller
         $product->avatar = $requestProduct->avatar;
         $product->title_seo = $requestProduct->title_seo;
         $product->content = $requestProduct->content;
+
+        // Điều kiện để kiểm tra tồn tại file
+        if($requestProduct->hasFile('avatar'))
+        {
+            $file = upload_image('avatar');
+            if (isset($file['name']))
+            {
+                $product->avatar = $file['name'];
+            }
+        }
+
         $product->save();
     }
 

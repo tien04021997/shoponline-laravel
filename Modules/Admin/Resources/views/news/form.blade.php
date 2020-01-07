@@ -1,4 +1,4 @@
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-sm-8">
@@ -14,14 +14,14 @@
 
             <div class="form-group">
                 <label for="icon">Mô tả:</label>
-                <textarea name="description" class="form-control" cols="30" rows="3" placeholder="Mô tả ngắn tin tức">
+                <textarea name="description" id="news_description" class="form-control" cols="30" rows="3" placeholder="Mô tả ngắn tin tức">
                     {{ old('description', isset($news->description) ? $news->description : '') }}
                 </textarea>
             </div>
 
             <div class="form-group">
                 <label for="icon">Nội dung:</label>
-                <textarea name="content" class="form-control" cols="30" rows="3" placeholder="Nội dung">
+                <textarea name="content" class="form-control" id="news_content" cols="30" rows="3" placeholder="Nội dung">
                     {{ old('content', isset($news->content) ? $news->content : '') }}
                 </textarea>
             </div>
@@ -52,8 +52,14 @@
             </div>
 
             <div class="form-group">
+                <div class="image-form">
+                    <img id="output_img" src="{{ asset('images/no-image.jpg') }}" alt="" />
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label for="avatar">Avatar:</label>
-                <input type="file" name="avatar" value="{{ old('avatar', isset($news->avatar) ? $news->avatar : '') }}" class="form-control">
+                <input id="input_img" type="file" name="avatar" value="{{ old('avatar', isset($news->avatar) ? $news->avatar : '') }}" class="form-control">
             </div>
 
             <div class="form-group">
@@ -66,3 +72,11 @@
 
     <button type="submit" class="btn btn-success">Thêm mới</button>
 </form>
+
+@section('script')
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script>
+        CKEDITOR.replace( 'news_content' );
+        CKEDITOR.replace('news_description');
+    </script>
+@stop

@@ -1,4 +1,4 @@
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-sm-8">
@@ -14,14 +14,14 @@
 
             <div class="form-group">
                 <label for="description">Mô tả:</label>
-                <textarea name="description" class="form-control" cols="30" rows="3" placeholder="Mô tả ngắn sản phẩm">
+                <textarea name="description" id="pro_description" class="form-control" cols="30" rows="3" placeholder="Mô tả ngắn sản phẩm">
                     {{ old('description', isset($product->description) ? $product->description : '') }}
                 </textarea>
             </div>
 
             <div class="form-group">
                 <label for="content">Nội dung:</label>
-                <textarea name="content" class="form-control" cols="30" rows="3" placeholder="Nội dung">
+                <textarea name="content" class="form-control" id="pro_content" cols="30" rows="3" placeholder="Nội dung">
                     {{ old('content', isset($product->content) ? $product->content : '') }}
                 </textarea>
             </div>
@@ -61,8 +61,14 @@
             </div>
 
             <div class="form-group">
+                <div class="image-form">
+                    <img id="output_img" src="{{ asset('images/no-image.jpg') }}"  alt=""/>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label for="avatar">Avatar:</label>
-                <input type="file" name="avatar" class="form-control" value="{{ old('avatar', isset($product->avatar) ? $product->avatar : '') }}">
+                <input type="file" name="avatar" class="form-control" id="input_img" value="{{ old('avatar', isset($product->avatar) ? $product->avatar : '') }}">
             </div>
 
             <div class="form-group">
@@ -75,3 +81,11 @@
 
     <button type="submit" class="btn btn-success">Thêm mới</button>
 </form>
+
+@section('script')
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script>
+        CKEDITOR.replace( 'pro_content' );
+        CKEDITOR.replace('pro_description');
+    </script>
+@stop

@@ -45,3 +45,7 @@
 .form-search form .form-group{
     margin-right: 5px;
 }
+.image-form img{
+    width: 100%;
+    height: auto;
+}

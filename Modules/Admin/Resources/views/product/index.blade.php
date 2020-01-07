@@ -40,6 +40,7 @@
                     <th>ID</th>
                     <th>Tên sản phẩm</th>
                     <th>Loại sản phẩm</th>
+                    <th>Hình ảnh</th>
                     <th>Giá sản phẩm</th>
                     <th>Giảm giá (%)</th>
                     <th>Trạng thái</th>
@@ -54,6 +55,9 @@
                             <td>{{ $product->id }}</td>
                             <td>{{ $product->name }}</td>
                             <td>{{ isset($product->category->c_name) ? $product->category->c_name : '[N/A]' }}</td>
+                            <td>
+                                <img src="http://localhost/shoponline-laravel/public{{ pare_url_file($product->avatar) }}" alt="" class="img img-responsive" style="width: 50px;height: 50px; object-fit: cover;">
+                            </td>
                             <td>{{ $product->price }}</td>
                             <td>{{ $product->sale }}</td>
                             <td>

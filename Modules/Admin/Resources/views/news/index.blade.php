@@ -41,6 +41,7 @@
                 <th>ID</th>
                 <th>Tên bài viết</th>
                 <th>Danh mục</th>
+                <th>Hình ảnh</th>
                 <th>Trạng thái</th>
                 <th>Nổi bật</th>
                 <th>Thao tác</th>
@@ -53,6 +54,9 @@
                         <td>{{ $news->id }}</td>
                         <td>{{ $news->name }}</td>
                         <td>{{ isset($news->category->name) ? $news->category->name : '[N/A]' }}</td>
+                        <td>
+                            <img src="http://localhost/shoponline-laravel/public{{ pare_url_file($news->avatar) }}" alt="" class="img img-responsive" style="width: 50px;height: 50px; object-fit: cover;">
+                        </td>
                         <td>
                             <a href="{{ route('admin.get.action.news',['active', $news->id]) }}" class="badge {{$news->getStatus($news->active)['class'] }}">
                                 {{ $news->getStatus($news->active)['name'] }}

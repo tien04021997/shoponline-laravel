@@ -13,115 +13,13 @@
                 <div class="mainmenu">
                     <nav>
                         <ul>
-                            <li class="expand"><a href="index.html">Home</a>
-                                <ul class="restrain sub-menu">
-                                    <li><a href="index-2.html">Home 2</a></li>
-                                    <li><a href="index-3.html">Home 3</a></li>
-                                    <li><a href="index-4.html">Home 4</a></li>
-                                    <li><a href="index-5.html">Home 5</a></li>
-                                    <li><a href="index-6.html">Home 6</a></li>
-                                    <li><a href="index-7.html">Home 7</a></li>
-                                    <li><a href="index-8.html">Home 8</a></li>
-                                </ul>
-                            </li>
-                            <li class="expand"><a href="shop-grid.html">Man</a>
-                                <div class="restrain mega-menu megamenu1">
-											<span>
-												<a class="mega-menu-title" href="shop-grid.html"> Dresses </a>
-												<a href="shop-grid.html">Coctail</a>
-												<a href="shop-grid.html">Day</a>
-												<a href="shop-grid.html">Evening </a>
-												<a href="shop-grid.html">Sports</a>
-											</span>
-                                    <span>
-												<a class="mega-menu-title" href="shop-grid.html"> Handbags </a>
-												<a href="shop-grid.html">Blazers</a>
-												<a href="shop-grid.html">Table</a>
-												<a href="shop-grid.html">Coats</a>
-												<a href="shop-grid.html">Kids</a>
-											</span>
-                                    <span>
-												<a class="mega-menu-title" href="shop-grid.html"> Clothing </a>
-												<a href="shop-grid.html">T-Shirt</a>
-												<a href="shop-grid.html">Coats</a>
-												<a href="shop-grid.html">Jackets</a>
-												<a href="shop-grid.html">Jeans</a>
-											</span>
-                                    <span class="block-last">
-                                        <img src="{{ asset('theme_frontend/img/block_menu.jpg') }}" alt="" />
-                                    </span>
-                                </div>
-                            </li>
-                            <li class="expand"><a href="shop-list.html">Women</a>
-                                <div class="restrain mega-menu megamenu2">
-											<span>
-												<a class="mega-menu-title" href="shop-grid.html">Rings</a>
-												<a href="shop-grid.html">Coats & Jackets</a>
-												<a href="shop-grid.html">Blazers</a>
-												<a href="shop-grid.html">Jackets</a>
-												<a href="shop-grid.html">Rincoats</a>
-											</span>
-                                    <span>
-												<a class="mega-menu-title" href="shop-grid.html">Dresses</a>
-												<a href="shop-grid.html">Ankle Boots</a>
-												<a href="shop-grid.html">Footwear</a>
-												<a href="shop-grid.html">Clog Sandals</a>
-												<a href="shop-grid.html">Combat Boots</a>
-											</span>
-                                    <span>
-												<a class="mega-menu-title" href="shop-grid.html">Accessories</a>
-												<a href="shop-grid.html">Bootees bags</a>
-												<a href="shop-grid.html">Blazers</a>
-												<a href="shop-grid.html">Jackets</a>
-												<a href="shop-grid.html">Shoes</a>
-											</span>
-                                    <span class="block-last">
-												<a class="mega-menu-title" href="shop-grid.html">Top</a>
-												<a href="shop-grid.html">Briefs</a>
-												<a href="shop-grid.html">Camis</a>
-												<a href="shop-grid.html">Nigntwears</a>
-												<a href="shop-grid.html">Shapewears</a>
-											</span>
-                                </div>
-                            </li>
-                            <li class="expand"><a href="shop-grid.html">Shop</a>
-                                <div class="restrain mega-menu megamenu4">
-											<span>
-												<a class="mega-menu-title" href="shop-list.html">Shop Pages</a>
-												<a href="shop-list.html">List View </a>
-												<a href="shop-grid.html">Grid View</a>
-												<a href="login.html">My Account</a>
-												<a href="wishlist.html">Wishlist</a>
-												<a href="cart.html">Cart </a>
-												<a href="checkout.html">Checkout </a>
-											</span>
-                                    <span class="block-last">
-												<a class="mega-menu-title" href="product-details.html">Product Types</a>
-												<a href="product-details.html">Simple Product</a>
-												<a href="product-details.html">Variables Product</a>
-												<a href="product-details.html">Grouped Product</a>
-												<a href="product-details.html">Downloadable</a>
-												<a href="product-details.html">Virtual Product</a>
-												<a href="product-details.html">External Product</a>
-											</span>
-                                </div>
-                            </li>
-                            <li class="expand"><a href="#">Pages</a>
-                                <ul class="restrain sub-menu">
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="contact-us.html">Contact Us</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="product-details.html">Product Details</a></li>
-                                    <li><a href="shop-grid.html">Shop Grid</a></li>
-                                    <li><a href="shop-list.html">Shop List</a></li>
-                                    <li><a href="cart.html">Shopping cart</a></li>
-                                    <li><a href="wishlist.html">Wishlist</a></li>
-                                    <li><a href="404.html">404 Error</a></li>
-                                </ul>
-                            </li>
-                            <li class="expand"><a href="about-us.html">About</a></li>
-                            <li class="expand"><a href="contact-us.html">Contact</a></li>
+                            @if(isset($categories))
+                                @foreach($categories as $categories)
+                                    <li class="expand">
+                                        <a href="{{ route('get.list.product',[$categories->c_slug,$categories->id]) }}">{{$categories->c_name}}</a>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </nav>
                 </div>

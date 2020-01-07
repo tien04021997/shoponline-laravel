@@ -71,6 +71,17 @@ class AdminNewsController extends Controller
         $news->avatar = $requestNews->avatar;
         $news->title_seo = $requestNews->title_seo;
         $news->content = $requestNews->content;
+
+        // Điều kiện để kiểm tra tồn tại file
+        if($requestNews->hasFile('avatar'))
+        {
+            $file = upload_image('avatar');
+            if (isset($file['name']))
+            {
+                $news->avatar = $file['name'];
+            }
+        }
+
         $news->save();
     }
 
