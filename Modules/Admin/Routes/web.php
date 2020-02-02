@@ -68,4 +68,18 @@ Route::prefix('admin')->group(function() {
         Route::get('/{action}/{id}', 'AdminNewsController@action')->name('admin.get.action.news');
     });
 
+    /*  Quản lý đơn hàng  */
+
+    Route::group(['prefix' => 'transaction'], function (){
+        Route::get('/', 'AdminTransactionController@index')->name('admin.get.list.transaction');
+
+    });
+
+    /* Quản lý thành viên */
+
+    Route::group(['prefix' => 'user'], function (){
+        Route::get('/', 'AdminUserController@index')->name('admin.get.list.user');
+
+    });
+
 });

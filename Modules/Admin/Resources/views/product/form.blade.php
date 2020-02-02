@@ -62,13 +62,13 @@
 
             <div class="form-group">
                 <div class="image-form">
-                    <img id="output_img" src="{{ asset('images/no-image.jpg') }}"  alt=""/>
+                    <img id="output_img" src="{{ isset($product->avatar) ? asset(old('avatar', $product->avatar)) : asset("images/no-image.jpg") }}"  alt=""/>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="avatar">Avatar:</label>
-                <input type="file" name="avatar" class="form-control" id="input_img" value="{{ old('avatar', isset($product->avatar) ? $product->avatar : '') }}">
+                <input type="file" name="avatar" class="form-control" id="input_img" value="{{ old('avatar', isset($product->avatar) ? asset($product->avatar) : '') }}">
             </div>
 
             <div class="form-group">

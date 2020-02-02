@@ -53,7 +53,7 @@ if (!function_exists('upload_image'))
         $data = [
             'name'              => $filename,
             'code'              => $code,
-            'path_img'          => 'uploads/'.$filename
+            'path_img'          => '/uploads/'.$folder.'/'.date('Y/m/d/').$filename
         ];
 
         return $data;

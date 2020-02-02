@@ -49,22 +49,22 @@
             </thead>
             <tbody>
             @if(isset($news))
-                @foreach($news as $news)
+                @foreach($news as $article)
                     <tr>
-                        <td>{{ $news->id }}</td>
-                        <td>{{ $news->name }}</td>
-                        <td>{{ isset($news->category->name) ? $news->category->name : '[N/A]' }}</td>
+                        <td>{{ $article->id }}</td>
+                        <td>{{ $article->name }}</td>
+                        <td>{{ isset($article->category->name) ? $article->category->name : '[N/A]' }}</td>
                         <td>
-                            <img src="http://localhost/shoponline-laravel/public{{ pare_url_file($news->avatar) }}" alt="" class="img img-responsive" style="width: 50px;height: 50px; object-fit: cover;">
+                            <img src="{{ asset($article->avatar) }}" alt="" class="img img-responsive" style="width: 50px;height: 50px; object-fit: cover;">
                         </td>
                         <td>
-                            <a href="{{ route('admin.get.action.news',['active', $news->id]) }}" class="badge {{$news->getStatus($news->active)['class'] }}">
-                                {{ $news->getStatus($news->active)['name'] }}
+                            <a href="{{ route('admin.get.action.news',['active', $article->id]) }}" class="badge {{$article->getStatus($article->active)['class'] }}">
+                                {{ $article->getStatus($article->active)['name'] }}
                             </a>
                         </td>
                         <td>
-                            <a href="{{ route('admin.get.action.news',['hot', $news->id]) }}" class="badge {{$news->getHot($news->hot)['class'] }}">
-                                {{ $news->getHot($news->hot)['name'] }}
+                            <a href="{{ route('admin.get.action.news',['hot', $article->id]) }}" class="badge {{$article->getHot($article->hot)['class'] }}">
+                                {{ $article->getHot($article->hot)['name'] }}
                             </a>
                         </td>
                         <td>
@@ -73,11 +73,11 @@
                                     <i class="fa fa-eye"></i>
                                 </a>
 
-                                <a class="status-edit" href="{{ route('admin.get.edit.news', $news->id) }}" title="Sửa">
+                                <a class="status-edit" href="{{ route('admin.get.edit.news', $article->id) }}" title="Sửa">
                                     <i class="fa fa-edit"></i>
                                 </a>
 
-                                <a class="status-delete" href="{{ route('admin.get.action.news', ['delete', $news->id]) }}" title="Xóa">
+                                <a class="status-delete" href="{{ route('admin.get.action.news', ['delete', $article->id]) }}" title="Xóa">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>
@@ -87,6 +87,10 @@
             @endif
             </tbody>
         </table>
+
+        <div class="pagination-page">
+            {{ $news -> links() }}
+        </div>
     </div>
 
 @stop

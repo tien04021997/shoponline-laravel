@@ -1,4 +1,3 @@
-
 <footer>
     <!-- top footer area start -->
     <div class="top-footer-area">
@@ -201,6 +200,3 @@
     </div>
     <!-- footer address area end -->
 </footer>
-
-
-

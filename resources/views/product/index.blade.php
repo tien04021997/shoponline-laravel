@@ -2,7 +2,7 @@
 @section('content')
     <div class="category-banner">
         <div class="cat-heading">
-            <span>Women</span>
+            <span>{{ $cateProduct->c_name }}</span>
         </div>
     </div>
     <!-- breadcrumbs area start -->
@@ -13,10 +13,11 @@
                     <div class="container-inner">
                         <ul>
                             <li class="home">
-                                <a href="index.html">Home</a>
+                                <a href="index.html">Trang chủ</a>
                                 <span><i class="fa fa-angle-right"></i></span>
                             </li>
-                            <li class="category3"><span>Shop Grid</span></li>
+                            <li class="category3"><span>{{ $cateProduct->c_name }}</span></li>
+
                         </ul>
                     </div>
                 </div>
@@ -33,21 +34,21 @@
                     <div class="topbar-left">
                         <aside class="widge-topbar">
                             <div class="bar-title">
-                                <div class="bar-ping"><img src="img/bar-ping.png" alt=""></div>
+                                <div class="bar-ping"><img src="{{ asset('theme_frontend/img/bar-ping.png') }}" alt=""></div>
                                 <h2>Shop by</h2>
                             </div>
                         </aside>
-                        <aside class="sidebar-content">
-                            <div class="sidebar-title">
-                                <h6>Categories</h6>
-                            </div>
-                            <ul class="sidebar-tags">
-                                <li><a href="#">Acsessories</a><span> (14)</span></li>
-                                <li><a href="#">Afternoon</a><span> (14)</span></li>
-                                <li><a href="#">Attachment</a><span> (14)</span></li>
-                                <li><a href="#">Beauty</a><span> (14)</span></li>
-                            </ul>
-                        </aside>
+                        {{--<aside class="sidebar-content">--}}
+                            {{--<div class="sidebar-title">--}}
+                                {{--<h6>Categories</h6>--}}
+                            {{--</div>--}}
+                            {{--<ul class="sidebar-tags">--}}
+                                {{--<li><a href="#">Acsessories</a><span> (14)</span></li>--}}
+                                {{--<li><a href="#">Afternoon</a><span> (14)</span></li>--}}
+                                {{--<li><a href="#">Attachment</a><span> (14)</span></li>--}}
+                                {{--<li><a href="#">Beauty</a><span> (14)</span></li>--}}
+                            {{--</ul>--}}
+                        {{--</aside>--}}
                         <aside class="sidebar-content">
                             <div class="sidebar-title">
                                 <h6>Availability</h6>
@@ -139,7 +140,7 @@
                         </aside>
                         <aside class="widge-topbar">
                             <div class="bar-title">
-                                <div class="bar-ping"><img src="img/bar-ping.png" alt=""></div>
+                                <div class="bar-ping"><img src="{{ asset('theme_frontend/img/bar-ping.png') }}" alt=""></div>
                                 <h2>Tags</h2>
                             </div>
                             <div class="exp-tags">
@@ -208,20 +209,20 @@
                             <div class="row">
                                 <div class="shop-product-tab first-sale">
                                     @if(isset($products))
-                                        @foreach($products as $products)
+                                        @foreach($products as $value)
                                             <div class="col-lg-4 col-md-4 col-sm-4">
                                                 <div class="two-product">
                                                     <!-- single-product start -->
                                                     <div class="single-product">
                                                         <span class="sale-text">Sale</span>
                                                         <div class="product-img">
-                                                            <a href="#">
-                                                                <img class="primary-image" src="http://localhost/shoponline-laravel/public{{ pare_url_file($products->avatar) }}" alt="" />
-                                                                <img class="secondary-image" src="http://localhost/shoponline-laravel/public{{ pare_url_file($products->avatar) }}" alt="" />
+                                                            <a href="{{ route('get.detail.product',[$value->id]) }}">
+                                                                <img class="primary-image" src="{{ asset($value->avatar) }}" alt="" />
+                                                                <img class="secondary-image" src="{{ asset($value->avatar) }}" alt="" />
                                                             </a>
                                                             <div class="action-zoom">
                                                                 <div class="add-to-cart">
-                                                                    <a href="#" title="Quick View"><i class="fa fa-search-plus"></i></a>
+                                                                    <a href="{{ route('get.detail.product',[$value->id]) }}" title="Quick View"><i class="fa fa-search-plus"></i></a>
                                                                 </div>
                                                             </div>
                                                             <div class="actions">
@@ -240,12 +241,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="price-box">
-                                                                <span class="new-price">{{ number_format($products->price,0,',','.') }} VNĐ</span>
+                                                                <span class="new-price">{{ number_format($value->price,0,',','.') }} VNĐ</span>
                                                             </div>
                                                         </div>
                                                         <div class="product-content">
-                                                            <h2 class="product-name"><a href="{{ route('get.detail.product',[$products->id]) }}">{{ $products->name }}</a></h2>
-                                                            <p>{{ $products->description }}</p>
+                                                            <h2 class="product-name"><a href="{{ route('get.detail.product',[$value->id]) }}">{{ $value->name }}</a></h2>
+                                                            <p>{{ strip_tags($value->description) }}</p>
                                                         </div>
                                                     </div>
                                                     <!-- single-product end -->
@@ -259,55 +260,59 @@
                         <!-- list view -->
                         <div class="tab-pane fade" id="shop-list-tab">
                             <div class="list-view">
-                                <!-- single-product start -->
                                 <div class="product-list-wrapper">
-                                    <div class="single-product">
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <div class="product-img">
-                                                <a href="#">
-                                                    <img class="primary-image" src="img/products/product-7.jpg" alt="" />
-                                                    <img class="secondary-image" src="img/products/product-2.jpg" alt="" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8 col-sm-8 col-xs-12">
-                                            <div class="product-content">
-                                                <h2 class="product-name"><a href="#">Cras neque metus</a></h2>
-                                                <div class="rating-price">
-                                                    <div class="pro-rating">
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                    </div>
-                                                    <div class="price-boxes">
-                                                        <span class="new-price">$110.00</span>
-                                                    </div>
-                                                </div>
-                                                <div class="product-desc">
-                                                    <p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend laoreet congue. Viva</p>
-                                                </div>
-                                                <div class="actions-e">
-                                                    <div class="action-buttons">
-                                                        <div class="add-to-cart">
-                                                            <a href="#">Add to cart</a>
-                                                        </div>
-                                                        <div class="add-to-links">
-                                                            <div class="add-to-wishlist">
-                                                                <a href="#" data-toggle="tooltip" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                            </div>
-                                                            <div class="compare-button">
-                                                                <a href="#" data-toggle="tooltip" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
-                                                            </div>
+                                    @if(isset($products))
+                                        @foreach($products as $key)
+                                            <!-- single-product start -->
+                                                <div class="single-product row">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <div class="product-img">
+                                                            <a href="{{ route('get.detail.product',[$key->id]) }}">
+                                                                <img class="primary-image" src="{{ asset($key->avatar) }}" alt="" />
+                                                                <img class="secondary-image" src="{{ asset($key->avatar) }}" alt="" />
+                                                            </a>
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                        <div class="product-content">
+                                                            <h2 class="product-name"><a href="{{ route('get.detail.product',[$key->id]) }}">{{ $key->name }}</a></h2>
+                                                            <div class="rating-price">
+                                                                <div class="pro-rating">
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                                </div>
+                                                                <div class="price-boxes">
+                                                                    <span class="new-price">{{ number_format($key->price,0,',','.') }} VNĐ</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="product-desc">
+                                                                <p>{{ strip_tags($key->description) }}</p>
+                                                            </div>
+                                                            <div class="actions-e">
+                                                                <div class="action-buttons">
+                                                                    <div class="add-to-cart">
+                                                                        <a href="#">Add to cart</a>
+                                                                    </div>
+                                                                    <div class="add-to-links">
+                                                                        <div class="add-to-wishlist">
+                                                                            <a href="#" data-toggle="tooltip" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+                                                                        </div>
+                                                                        <div class="compare-button">
+                                                                            <a href="#" data-toggle="tooltip" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                                <!-- single-product end -->
+                                        @endforeach
+                                    @endif
                                 </div>
-                                <!-- single-product end -->
                             </div>
                         </div>
                         <!-- shop toolbar start -->
@@ -362,14 +367,14 @@
         <div class="container">
             <div class="row">
                 <div class="brand-carousel">
-                    <div class="brand-item"><a href="#"><img src="img/brand/bg1-brand.jpg" alt="" /></a></div>
-                    <div class="brand-item"><a href="#"><img src="img/brand/bg2-brand.jpg" alt="" /></a></div>
-                    <div class="brand-item"><a href="#"><img src="img/brand/bg3-brand.jpg" alt="" /></a></div>
-                    <div class="brand-item"><a href="#"><img src="img/brand/bg4-brand.jpg" alt="" /></a></div>
-                    <div class="brand-item"><a href="#"><img src="img/brand/bg5-brand.jpg" alt="" /></a></div>
-                    <div class="brand-item"><a href="#"><img src="img/brand/bg2-brand.jpg" alt="" /></a></div>
-                    <div class="brand-item"><a href="#"><img src="img/brand/bg3-brand.jpg" alt="" /></a></div>
-                    <div class="brand-item"><a href="#"><img src="img/brand/bg4-brand.jpg" alt="" /></a></div>
+                    <div class="brand-item"><a href="#"><img src="{{ asset('theme_frontend/img/brand/bg1-brand.jpg') }}" alt="" /></a></div>
+                    <div class="brand-item"><a href="#"><img src="{{ asset('theme_frontend/img/brand/bg2-brand.jpg') }}" alt="" /></a></div>
+                    <div class="brand-item"><a href="#"><img src="{{ asset('theme_frontend/img/brand/bg3-brand.jpg') }}" alt="" /></a></div>
+                    <div class="brand-item"><a href="#"><img src="{{ asset('theme_frontend/img/brand/bg4-brand.jpg') }}" alt="" /></a></div>
+                    <div class="brand-item"><a href="#"><img src="{{ asset('theme_frontend/img/brand/bg5-brand.jpg') }}" alt="" /></a></div>
+                    <div class="brand-item"><a href="#"><img src="{{ asset('theme_frontend/img/brand/bg2-brand.jpg') }}" alt="" /></a></div>
+                    <div class="brand-item"><a href="#"><img src="{{ asset('theme_frontend/img/brand/bg3-brand.jpg') }}" alt="" /></a></div>
+                    <div class="brand-item"><a href="#"><img src="{{ asset('theme_frontend/img/brand/bg4-brand.jpg') }}" alt="" /></a></div>
                 </div>
             </div>
         </div>

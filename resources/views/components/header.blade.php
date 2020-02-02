@@ -13,13 +13,42 @@
                 <div class="mainmenu">
                     <nav>
                         <ul>
-                            @if(isset($categories))
-                                @foreach($categories as $categories)
-                                    <li class="expand">
-                                        <a href="{{ route('get.list.product',[$categories->c_slug,$categories->id]) }}">{{$categories->c_name}}</a>
-                                    </li>
-                                @endforeach
-                            @endif
+                            <li class="expand">
+                                <a href="">Trang chủ</a>
+                            </li>
+                            <li class="expand">
+                                <a href="">Sản phẩm</a>
+                                @if(isset($categories))
+                                    <ul class="restrain sub-menu">
+                                        @foreach($categories as $cat)
+                                            <li><a href="{{ route('get.list.product',[$cat->c_slug,$cat->id]) }}">{{ $cat->c_name }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </li>
+                            <li class="expand">
+                                <a href="">Tin tức</a>
+                            </li>
+                            <li class="expand">
+                                <a href="">Giới thiệu</a>
+                            </li>
+                            <li class="expand">
+                                <a href="">Liên hệ</a>
+                            </li>
+                            {{--<li class="expand"><a href="#">Pages</a>--}}
+                                {{--<ul class="restrain sub-menu">--}}
+                                    {{--<li><a href="about-us.html">About Us</a></li>--}}
+                                    {{--<li><a href="contact-us.html">Contact Us</a></li>--}}
+                                    {{--<li><a href="checkout.html">Checkout</a></li>--}}
+                                    {{--<li><a href="login.html">Login</a></li>--}}
+                                    {{--<li><a href="product-details.html">Product Details</a></li>--}}
+                                    {{--<li><a href="shop-grid.html">Shop Grid</a></li>--}}
+                                    {{--<li><a href="shop-list.html">Shop List</a></li>--}}
+                                    {{--<li><a href="cart.html">Shopping cart</a></li>--}}
+                                    {{--<li><a href="wishlist.html">Wishlist</a></li>--}}
+                                    {{--<li><a href="404.html">404 Error</a></li>--}}
+                                {{--</ul>--}}
+                            {{--</li>--}}
                         </ul>
                     </nav>
                 </div>
@@ -157,25 +186,25 @@
             <div class="col-md-3 col-sm-12 nopadding-left">
                 <div class="top-detail">
                     <!-- language division start -->
-                    <div class="disflow">
-                        <div class="expand lang-all disflow">
-                            <a href="#"><img src="{{ asset('theme_frontend/img/country/en.gif') }}" alt="">English</a>
-                            <ul class="restrain language">
-                                <li><a href="#"><img src="{{ asset('theme_frontend/img/country/it.gif') }}" alt="">italiano</a></li>
-                                <li><a href="#"><img src="{{ asset('theme_frontend/img/country/nl_nl.gif') }}" alt="">Nederlands</a></li>
-                                <li><a href="#"><img src="{{ asset('theme_frontend/img/country/de_de.gif') }}" alt="">Deutsch</a></li>
-                                <li><a href="#"><img src="{{ asset('theme_frontend/img/country/en.gif') }}" alt="">English</a></li>
-                            </ul>
-                        </div>
-                        <div class="expand lang-all disflow">
-                            <a href="#">$ USD</a>
-                            <ul class="restrain language">
-                                <li><a href="#">€ Eur</a></li>
-                                <li><a href="#">$ USD</a></li>
-                                <li><a href="#">£ GBP</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    {{--<div class="disflow">--}}
+                        {{--<div class="expand lang-all disflow">--}}
+                            {{--<a href="#"><img src="{{ asset('theme_frontend/img/country/en.gif') }}" alt="">English</a>--}}
+                            {{--<ul class="restrain language">--}}
+                                {{--<li><a href="#"><img src="{{ asset('theme_frontend/img/country/it.gif') }}" alt="">italiano</a></li>--}}
+                                {{--<li><a href="#"><img src="{{ asset('theme_frontend/img/country/nl_nl.gif') }}" alt="">Nederlands</a></li>--}}
+                                {{--<li><a href="#"><img src="{{ asset('theme_frontend/img/country/de_de.gif') }}" alt="">Deutsch</a></li>--}}
+                                {{--<li><a href="#"><img src="{{ asset('theme_frontend/img/country/en.gif') }}" alt="">English</a></li>--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
+                        {{--<div class="expand lang-all disflow">--}}
+                            {{--<a href="#">$ USD</a>--}}
+                            {{--<ul class="restrain language">--}}
+                                {{--<li><a href="#">€ Eur</a></li>--}}
+                                {{--<li><a href="#">$ USD</a></li>--}}
+                                {{--<li><a href="#">£ GBP</a></li>--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                     <!-- language division end -->
                     <!-- addcart top start -->
                     <div class="disflow">
@@ -229,8 +258,8 @@
                                         <div class="input-group">
                                             <input type="text" class="form-control" maxlength="128" placeholder="Search product...">
                                             <span class="input-group-btn">
-														<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-													</span>
+                                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                            </span>
                                         </div>
                                     </form>
                                 </div>
@@ -242,12 +271,10 @@
                         <div class="expand dropps-menu">
                             <a href="#"><i class="fa fa-align-right"></i></a>
                             <ul class="restrain language">
-                                <li><a href="login.html">My Account</a></li>
-                                <li><a href="wishlist.html">My Wishlist</a></li>
-                                <li><a href="cart.html">My Cart</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="#">Testimonial</a></li>
-                                <li><a href="login.html">Log In</a></li>
+                                <li><a href="login.html">Quản lý</a></li>
+                                <li><a href="wishlist.html">Sản phẩm yêu thích</a></li>
+                                <li><a href="cart.html">Giỏ hàng</a></li>
+                                <li><a href="checkout.html">Thoát</a></li>
                             </ul>
                         </div>
                     </div>

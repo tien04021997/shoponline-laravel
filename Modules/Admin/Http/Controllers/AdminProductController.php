@@ -9,6 +9,7 @@ use App\Models\Product;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Pagination\Paginator;
 
 class AdminProductController extends Controller
 {
@@ -76,7 +77,6 @@ class AdminProductController extends Controller
         $product->description_seo = $requestProduct->description_seo;
         $product->price = $requestProduct->price;
         $product->sale = $requestProduct->sale;
-        $product->avatar = $requestProduct->avatar;
         $product->title_seo = $requestProduct->title_seo;
         $product->content = $requestProduct->content;
 
@@ -84,12 +84,11 @@ class AdminProductController extends Controller
         if($requestProduct->hasFile('avatar'))
         {
             $file = upload_image('avatar');
-            if (isset($file['name']))
+            if (isset($file['path_img']))
             {
-                $product->avatar = $file['name'];
+                $product->avatar = $file['path_img'];
             }
         }
-
         $product->save();
     }
 

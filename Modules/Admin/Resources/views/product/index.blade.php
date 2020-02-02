@@ -50,24 +50,24 @@
             </thead>
             <tbody>
                 @if(isset($product))
-                    @foreach($product as $product)
+                    @foreach($product as $products)
                         <tr>
-                            <td>{{ $product->id }}</td>
-                            <td>{{ $product->name }}</td>
-                            <td>{{ isset($product->category->c_name) ? $product->category->c_name : '[N/A]' }}</td>
+                            <td>{{ $products->id }}</td>
+                            <td>{{ $products->name }}</td>
+                            <td>{{ isset($products->category->c_name) ? $products->category->c_name : '[N/A]' }}</td>
                             <td>
-                                <img src="http://localhost/shoponline-laravel/public{{ pare_url_file($product->avatar) }}" alt="" class="img img-responsive" style="width: 50px;height: 50px; object-fit: cover;">
+                                <img src="{{ asset($products->avatar) }}" alt="" class="img img-responsive" style="width: 50px;height: 50px; object-fit: cover;">
                             </td>
-                            <td>{{ $product->price }}</td>
-                            <td>{{ $product->sale }}</td>
+                            <td>{{ $products->price }}</td>
+                            <td>{{ $products->sale }}</td>
                             <td>
-                                <a href="{{ route('admin.get.action.product',['active', $product->id]) }}" class="badge {{$product->getStatus($product->active)['class'] }}">
-                                    {{ $product->getStatus($product->active)['name'] }}
+                                <a href="{{ route('admin.get.action.product',['active', $products->id]) }}" class="badge {{$products->getStatus($products->active)['class'] }}">
+                                    {{ $products->getStatus($products->active)['name'] }}
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('admin.get.action.product',['hot', $product->id]) }}" class="badge {{$product->getHot($product->hot)['class'] }}">
-                                    {{ $product->getHot($product->hot)['name'] }}
+                                <a href="{{ route('admin.get.action.product',['hot', $products->id]) }}" class="badge {{$products->getHot($products->hot)['class'] }}">
+                                    {{ $products->getHot($products->hot)['name'] }}
                                 </a>
                             </td>
                             <td>
@@ -76,11 +76,11 @@
                                         <i class="fa fa-eye"></i>
                                     </a>
 
-                                    <a class="status-edit" href="{{ route('admin.get.edit.product', $product->id) }}" title="Sửa">
+                                    <a class="status-edit" href="{{ route('admin.get.edit.product', $products->id) }}" title="Sửa">
                                         <i class="fa fa-edit"></i>
                                     </a>
 
-                                    <a class="status-delete" href="{{ route('admin.get.action.product', ['delete', $product->id]) }}" title="Xóa">
+                                    <a class="status-delete" href="{{ route('admin.get.action.product', ['delete', $products->id]) }}" title="Xóa">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </div>
@@ -90,6 +90,10 @@
                 @endif
             </tbody>
         </table>
+
+        <div class="pagination-page">
+            {{ $product -> links() }}
+        </div>
     </div>
 
 @stop

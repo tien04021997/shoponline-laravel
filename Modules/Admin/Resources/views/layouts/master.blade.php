@@ -119,14 +119,14 @@
                 <span>Tin tức</span></a>
         </li>
 
-        <li class="nav-item {{ \Request::route()->getName() == '' ? 'active' : '' }}">
-            <a class="nav-link" href="tables.html">
+        <li class="nav-item {{ \Request::route()->getName() == 'admin.get.list.transaction' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('admin.get.list.transaction') }}">
                 <i class="fa fa-shopping-cart"></i>
                 <span>Đơn hàng</span></a>
         </li>
 
-        <li class="nav-item {{ \Request::route()->getName() == '' ? 'active' : '' }}">
-            <a class="nav-link" href="tables.html">
+        <li class="nav-item {{ \Request::route()->getName() == 'admin.get.list.user' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('admin.get.list.user') }}">
                 <i class="fa fa-user"></i>
                 <span>Thành viên</span></a>
         </li>
@@ -217,7 +217,6 @@
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-
             reader.onload = function(e) {
                 $('#output_img').attr('src', e.target.result);
             }
@@ -228,6 +227,22 @@
 
     $("#input_img").change(function() {
         readURL(this);
+    });
+
+    function readNewsURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#output_img_news').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#input_img_news").change(function() {
+        readNewsURL(this);
     });
 </script>
 @yield('script')

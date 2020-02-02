@@ -68,7 +68,6 @@ class AdminNewsController extends Controller
         $news->category_id = $requestNews->category_id;
         $news->description = $requestNews->description;
         $news->description_seo = $requestNews->description_seo;
-        $news->avatar = $requestNews->avatar;
         $news->title_seo = $requestNews->title_seo;
         $news->content = $requestNews->content;
 
@@ -76,9 +75,9 @@ class AdminNewsController extends Controller
         if($requestNews->hasFile('avatar'))
         {
             $file = upload_image('avatar');
-            if (isset($file['name']))
+            if (isset($file['path_img']))
             {
-                $news->avatar = $file['name'];
+                $news->avatar = $file['path_img'];
             }
         }
 

@@ -75,7 +75,9 @@
 
     <!-- style CSS
     ============================================ -->
-    <link rel="stylesheet" href="{{ asset('theme_frontend/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('theme_frontend/css/style_theme.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('theme_frontend/css/css_custom.css') }}">
 
     <!-- responsive CSS
     ============================================ -->
@@ -95,9 +97,11 @@
 <div class="main">
     @yield('content')
 </div>
+
 <!-- FOOTER START -->
 @include('components.footer')
 <!-- FOOTER END -->
+
 <!-- JS -->
 
 <!-- jquery-1.11.3.min js
