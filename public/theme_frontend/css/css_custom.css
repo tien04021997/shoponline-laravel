@@ -7,6 +7,9 @@
     height: 100%;
     object-fit: cover;
 }
+.nivoSlider img{
+    height: 30vw !important;
+}
 
 @media (min-width: 768px) {
 
@@ -22,7 +25,12 @@
         height: 100%;
         object-fit: cover;
     }
-
+    .nivoSlider img{
+        height: 30vw !important;
+    }
+    ul.restrain.language{
+        width: 200px;
+    }
 }
 
 @media (min-width: 1200px) {

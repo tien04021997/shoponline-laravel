@@ -14,7 +14,7 @@
                     <nav>
                         <ul>
                             <li class="expand">
-                                <a href="">Trang chủ</a>
+                                <a href="{{ route('home') }}">Trang chủ</a>
                             </li>
                             <li class="expand">
                                 <a href="">Sản phẩm</a>
@@ -35,20 +35,6 @@
                             <li class="expand">
                                 <a href="">Liên hệ</a>
                             </li>
-                            {{--<li class="expand"><a href="#">Pages</a>--}}
-                                {{--<ul class="restrain sub-menu">--}}
-                                    {{--<li><a href="about-us.html">About Us</a></li>--}}
-                                    {{--<li><a href="contact-us.html">Contact Us</a></li>--}}
-                                    {{--<li><a href="checkout.html">Checkout</a></li>--}}
-                                    {{--<li><a href="login.html">Login</a></li>--}}
-                                    {{--<li><a href="product-details.html">Product Details</a></li>--}}
-                                    {{--<li><a href="shop-grid.html">Shop Grid</a></li>--}}
-                                    {{--<li><a href="shop-list.html">Shop List</a></li>--}}
-                                    {{--<li><a href="cart.html">Shopping cart</a></li>--}}
-                                    {{--<li><a href="wishlist.html">Wishlist</a></li>--}}
-                                    {{--<li><a href="404.html">404 Error</a></li>--}}
-                                {{--</ul>--}}
-                            {{--</li>--}}
                         </ul>
                     </nav>
                 </div>
@@ -185,28 +171,6 @@
             <!-- top details area start -->
             <div class="col-md-3 col-sm-12 nopadding-left">
                 <div class="top-detail">
-                    <!-- language division start -->
-                    {{--<div class="disflow">--}}
-                        {{--<div class="expand lang-all disflow">--}}
-                            {{--<a href="#"><img src="{{ asset('theme_frontend/img/country/en.gif') }}" alt="">English</a>--}}
-                            {{--<ul class="restrain language">--}}
-                                {{--<li><a href="#"><img src="{{ asset('theme_frontend/img/country/it.gif') }}" alt="">italiano</a></li>--}}
-                                {{--<li><a href="#"><img src="{{ asset('theme_frontend/img/country/nl_nl.gif') }}" alt="">Nederlands</a></li>--}}
-                                {{--<li><a href="#"><img src="{{ asset('theme_frontend/img/country/de_de.gif') }}" alt="">Deutsch</a></li>--}}
-                                {{--<li><a href="#"><img src="{{ asset('theme_frontend/img/country/en.gif') }}" alt="">English</a></li>--}}
-                            {{--</ul>--}}
-                        {{--</div>--}}
-                        {{--<div class="expand lang-all disflow">--}}
-                            {{--<a href="#">$ USD</a>--}}
-                            {{--<ul class="restrain language">--}}
-                                {{--<li><a href="#">€ Eur</a></li>--}}
-                                {{--<li><a href="#">$ USD</a></li>--}}
-                                {{--<li><a href="#">£ GBP</a></li>--}}
-                            {{--</ul>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    <!-- language division end -->
-                    <!-- addcart top start -->
                     <div class="disflow">
                         <div class="circle-shopping expand">
                             <div class="shopping-carts text-right">
@@ -271,10 +235,15 @@
                         <div class="expand dropps-menu">
                             <a href="#"><i class="fa fa-align-right"></i></a>
                             <ul class="restrain language">
-                                <li><a href="login.html">Quản lý</a></li>
-                                <li><a href="wishlist.html">Sản phẩm yêu thích</a></li>
-                                <li><a href="cart.html">Giỏ hàng</a></li>
-                                <li><a href="checkout.html">Thoát</a></li>
+                                @if(Auth::check())
+                                    <li><a href="login.html">Quản lý</a></li>
+                                    <li><a href="wishlist.html">Sản phẩm yêu thích</a></li>
+                                    <li><a href="cart.html">Giỏ hàng</a></li>
+                                    <li><a href="{{ route('get.logout.user') }}">Thoát</a></li>
+                                @else
+                                    <li><a href="{{ route('get.register') }}">Đăng ký</a></li>
+                                    <li><a href="{{ route('get.login') }}">Đăng nhập</a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>
