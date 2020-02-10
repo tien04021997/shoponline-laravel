@@ -42,10 +42,14 @@
                                     <label for="reg_password">Password <span class="required">*</span></label>
                                     <input type="password" class="input-text" name="password" id="reg_password">
                                 </p>
-                                {{--<p class="form-row form-row-wide">--}}
-                                    {{--<label for="reg_password">Số điện thoại <span class="required">*</span></label>--}}
-                                    {{--<input type="text" class="input-text" name="phone" id="reg_phone">--}}
-                                {{--</p>--}}
+                                <p class="form-row form-row-wide">
+                                    <label for="reg_password">Số điện thoại <span class="required">*</span></label>
+                                    <input type="text" class="input-text" name="phone" id="reg_phone">
+                                </p>
+                                <p class="form-row form-row-wide">
+                                    <label for="reg_password">Địa chỉ <span class="required">*</span></label>
+                                    <input type="text" class="input-text" name="address" id="reg_address">
+                                </p>
                                 {{--<div style="left: -999em; position: absolute;">--}}
                                     {{--<label for="trap">Anti-spam</label>--}}
                                     {{--<input type="text" name="email_2" id="trap" tabindex="-1">--}}
