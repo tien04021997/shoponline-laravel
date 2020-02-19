@@ -28,8 +28,17 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('danh-muc/{slug}-{id}','CategoryController@getListProduct')->name('get.list.product');
 Route::get('san-pham/{id}','ProductDetailController@productDetail')->name('get.detail.product');
 
-/*=== Route giỏ hàng ===*/
 Route::prefix('shopping')->group(function () {
     Route::get('add/{id}','ShoppingCartController@addProduct')->name('add.shopping.cart');
+    Route::get('delete/{id}','ShoppingCartController@deleteProductItem')->name('delete.shopping.cart');
     Route::get('/danh-sach','ShoppingCartController@getListShoppingCart')->name('get.list.shopping.cart');
 });
+
+Route::group(['prefix' => 'gio-hang','middleware' => 'CheckLoginUser'],function (){
+    Route::get('/thanh-toan','ShoppingCartController@getFormPay')->name('get.form.pay');
+    Route::post('/thanh-toan','ShoppingCartController@saveInfoShoppingCart');
+});
+
+
+Route::get('lien-he','ContactController@getContact')->name('get.Contact');
+Route::post('lien-he','ContactController@saveContact');

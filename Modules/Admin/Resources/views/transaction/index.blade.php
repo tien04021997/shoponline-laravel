@@ -17,19 +17,43 @@
     <div class="table-custom">
         <table class="table table-bordered">
             <thead>
-            <tr>
-                <th>ID</th>
-                <th>Tên sản phẩm</th>
-                <th>Loại sản phẩm</th>
-                <th>Hình ảnh</th>
-                <th>Giá sản phẩm</th>
-                <th>Giảm giá (%)</th>
-                <th>Trạng thái</th>
-                <th>Nổi bật</th>
-                <th>Thao tác</th>
-            </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên khách hàng</th>
+                    <th>Số điện thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>Tổng tiền</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                </tr>
             </thead>
             <tbody>
+                @foreach($transactions as $transaction)
+                    <tr>
+                        <td>{{ $transaction->id }}</td>
+                        <td>{{ isset($transaction->user->name) ? $transaction->user->name : '[N/A]' }}</td>
+                        <td>{{ $transaction->phone }}</td>
+                        <td>{{ $transaction->address }}</td>
+                        <td>{{ number_format($transaction->total,0,',','.') }} VNĐ</td>
+                        <td>
+                            @if($transaction->status == 1)
+                                <a href="#" class="btn btn-success">Đã xử lý</a>
+                            @else
+                                <a href="#" class="btn btn-danger">Chờ xử lý</a>
+                            @endif
+                        </td>
+                        <td>
+                            <div class="status-admin">
+                                <a class="status-view js-order-item" data-id="{{ $transaction->id }}" href="{{ route('admin.get.view.product',$transaction->id) }}" title="Xem chi tiết">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                {{--<a class="status-delete" href="{{ route('admin.get.action.transaction', ['delete', $transaction->id]) }}" title="Xóa">--}}
+                                    {{--<i class="fa fa-trash"></i>--}}
+                                {{--</a>--}}
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
 
             </tbody>
         </table>
@@ -38,4 +62,40 @@
 
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModalOrder" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    {{--<button type="button" class="close" data-dismiss="modal">&times;</button>--}}
+                    <h4 class="modal-title">Chi tiết mã đơn hàng #<b class="transction-id"></b></h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@stop
+
+@section('script')
+    <script>
+        $(function () {
+            $(".js-order-item").click(function (event) {
+                event.preventDefault();
+                let $this = $(this);
+                let url = $this.attr('href');
+                $(".transction-id").text('').text($this.attr('data-id'));
+
+                $("#myModalOrder").modal('show');
+
+                console.log(url);
+            });
+        })
+    </script>
+
 @stop

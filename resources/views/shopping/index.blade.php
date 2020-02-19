@@ -10,7 +10,7 @@
                 <tr>
                     <th>STT</th>
                     <th>Tên sản phẩm</th>
-                    {{--<th>Hình ảnh</th>--}}
+                    <th>Hình ảnh</th>
                     <th>Giá</th>
                     <th>Số lượng</th>
                     <th>Thành tiền</th>
@@ -19,30 +19,30 @@
             </thead>
             <tbody>
             <?php $i = 1 ?>
-            @foreach($products as $value => $key)
-                {{--{{ dd($key) }}--}}
+            @foreach($product as $key => $value)
+                {{--{{ dd($value) }}--}}
             <tr>
                 <td>
                     <a href="#">{{ ($i) }}</a>
                 </td>
                 <td>
-                    <a href="#">{{ $key->name }}</a>
-                </td>
-                {{--<td>--}}
-                    {{--<img src="{{ asset($key->options->avatar) }}" style="width: 60px; height: 60px; object-fit: cover;"/>--}}
-                {{--</td>--}}
-                <td>
-                    {{ number_format($key->price,0,',','.') }} VNĐ
+                    <a href="#">{{ $value->name }}</a>
                 </td>
                 <td>
-                    {{ $key->qty }}
+                    <img src="{{ asset($value->options->avatar) }}" style="width: 60px; height: 60px; object-fit: cover;"/>
                 </td>
                 <td>
-                    {{ number_format($key->qty * $key->price,0,',','.') }} VNĐ
+                    {{ number_format($value->price,0,',','.') }} VNĐ
+                </td>
+                <td>
+                    {{ $value->qty }}
+                </td>
+                <td>
+                    {{ number_format($value->qty * $value->price,0,',','.') }} VNĐ
                 </td>
                 <td>
                     <a href=""><i class="fa fa-pencil"></i> Edit</a>
-                    <a href=""><i class="fa fa-trash-o"></i> Xóa</a>
+                    <a href="{{ route('delete.shopping.cart',$key) }}"><i class="fa fa-trash-o"></i> Xóa</a>
                 </td>
             </tr>
             <?php $i++ ?>
@@ -51,7 +51,7 @@
         </table>
 
         <div class="order-total">
-            <h4 class="pull-right">Tổng tiền cần thanh toán: {{ \Cart::subtotal() }} VNĐ <a href="" class="btn btn-success">Thanh toán</a> </h4>
+            <h4 class="pull-right">Tổng tiền cần thanh toán: {{ \Cart::subtotal() }} VNĐ <a href="{{ route('get.form.pay') }}" class="btn btn-success">Thanh toán</a> </h4>
         </div>
     </div>
 </div>

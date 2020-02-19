@@ -72,6 +72,8 @@ Route::prefix('admin')->group(function() {
 
     Route::group(['prefix' => 'transaction'], function (){
         Route::get('/', 'AdminTransactionController@index')->name('admin.get.list.transaction');
+        Route::get('/view/{id}', 'AdminTransactionController@viewOrder')->name('admin.get.view.product');
+//        Route::get('/{action}/{id}', 'AdminTransactionController@action')->name('admin.get.action.product');
 
     });
 
