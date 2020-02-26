@@ -2,6 +2,7 @@
 
 namespace Modules\Admin\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -23,6 +24,13 @@ class AdminTransactionController extends Controller
 
     public function viewOrder(Request $request, $id)
     {
+        if ($request->ajax())
+        {
+            $orders = Order::with('product')->where('transaction_id',$id)->get();
 
+            $html = view('admin::components.order', compact('orders'))->render();
+
+            return \response()->json($html);
+        }
     }
 }

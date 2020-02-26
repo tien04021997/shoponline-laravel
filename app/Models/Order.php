@@ -8,4 +8,9 @@ class Order extends Model
 {
     protected $table = 'orders';
     protected $guarded = ['*'];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
 }

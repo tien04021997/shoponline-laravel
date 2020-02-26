@@ -82,6 +82,15 @@ Route::prefix('admin')->group(function() {
     Route::group(['prefix' => 'user'], function (){
         Route::get('/', 'AdminUserController@index')->name('admin.get.list.user');
 
+        Route::get('/{action}/{id}', 'AdminUserController@action')->name('admin.get.action.user');
+
+    });
+
+    /* Quản lý liên hệ */
+    Route::group(['prefix' => 'contacts'], function (){
+       Route::get('/', 'AdminContactController@index')->name('admin.get.list.contact');
+
+       Route::get('/{action}/{id}', 'AdminContactController@action')->name('admin.get.action.contact');
     });
 
 });

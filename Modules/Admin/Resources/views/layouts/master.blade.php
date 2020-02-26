@@ -128,7 +128,13 @@
         <li class="nav-item {{ \Request::route()->getName() == 'admin.get.list.user' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('admin.get.list.user') }}">
                 <i class="fa fa-user"></i>
-                <span>Thành viên</span></a>
+                <span>Khách hàng</span></a>
+        </li>
+
+        <li class="nav-item" {{ \Request::route()->getName() == 'admin.get.list.contact' ? 'active' : '' }}>
+            <a class="nav-link" href="{{ route('admin.get.list.contact') }}">
+                <i class="fa fa-envelope"></i>
+                <span>Liên hệ</span></a>
         </li>
     </ul>
 

@@ -44,9 +44,9 @@
                                         {{--<i class="fa fa-edit"></i>--}}
                                     {{--</a>--}}
 
-                                    {{--<a class="status-delete" href="{{ route('admin.get.action.product', ['delete', $products->id]) }}" title="Xóa">--}}
-                                        {{--<i class="fa fa-trash"></i>--}}
-                                    {{--</a>--}}
+                                    <a class="status-delete" href="{{ route('admin.get.action.user', ['delete', $user->id]) }}" title="Xóa">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
                                 </div>
                             </td>
                         </tr>

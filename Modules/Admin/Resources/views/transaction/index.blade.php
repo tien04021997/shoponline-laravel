@@ -71,7 +71,7 @@
                     {{--<button type="button" class="close" data-dismiss="modal">&times;</button>--}}
                     <h4 class="modal-title">Chi tiết mã đơn hàng #<b class="transction-id"></b></h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="md_content">
                     <p>Some text in the modal.</p>
                 </div>
                 <div class="modal-footer">
@@ -89,11 +89,19 @@
                 event.preventDefault();
                 let $this = $(this);
                 let url = $this.attr('href');
+                $("#md_content").html('');
                 $(".transction-id").text('').text($this.attr('data-id'));
 
                 $("#myModalOrder").modal('show');
 
-                console.log(url);
+                $.ajax({
+                    url: url,
+                }).done(function (result) {
+                    if (result)
+                    {
+                        $("#md_content").append(result);
+                    }
+                });
             });
         })
     </script>

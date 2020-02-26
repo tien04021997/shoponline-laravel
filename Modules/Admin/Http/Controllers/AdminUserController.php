@@ -23,4 +23,18 @@ class AdminUserController extends Controller
         return view('admin::user.index', $viewData);
     }
 
+    public function action($action, $id)
+    {
+        if ($action){
+            $users = User::find($id);
+            switch ($action){
+                case 'delete':
+                    $users->delete();
+                    break;
+            }
+        }
+
+        return redirect()->back();
+    }
+
 }
